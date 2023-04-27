@@ -50,6 +50,40 @@ public class Job {
         return Objects.hash(id);
     }
 
+    @Override
+    public String toString() {
+        String noData = "Data not available";
+        if (this.getName().equals("") && this.getEmployer().getValue().equals("") && this.getLocation().getValue().equals("") && this.getPositionType().getValue().equals("") && this.getCoreCompetency().getValue().equals("")){
+            return "OOPS! This job does not seem to exist.";
+        }
+        if (this.getName().equals("")){
+            this.setName(noData);
+        }
+        if (this.getEmployer().getValue().equals("")){
+            this.setEmployer(new Employer(noData));
+        }
+        if (this.getLocation().getValue().equals("")){
+            this.setLocation(new Location(noData));
+        }
+        if (this.getPositionType().getValue().equals("")){
+            this.setPositionType(new PositionType(noData));
+        }
+        if (this.getCoreCompetency().getValue().equals("")){
+            this.setCoreCompetency(new CoreCompetency(noData));
+        }
+
+
+//
+        return "\n" +
+                "ID: " + this.getId() + "\n" +
+                "Name: " + this.getName() + "\n" +
+                "Employer: " + this.getEmployer().getValue() + "\n" +
+                "Location: " + this.getLocation().getValue() + "\n" +
+                "Position Type: " + this.getPositionType().getValue() + "\n" +
+                "Core Competency: " + this.getCoreCompetency().getValue() +
+                "\n";
+    }
+
     public String getName() {
         return name;
     }
